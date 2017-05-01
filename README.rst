@@ -186,6 +186,15 @@ switch between git master and the latest FFmpeg release.
 
 Use on your own risk.
 
+To make use of the rockchip hardware acceleration, switch to the rockchip
+version:
+
+    ./use-mpv-rockchip
+
+    ./use-ffmpeg-rockchip
+
+And run ``./rebuild`` or similar.
+
 mpv configure options
 =====================
 

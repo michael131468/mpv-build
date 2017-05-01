@@ -16,10 +16,12 @@ do_clone()
 
 do_clone_all()
 {
-    do_clone "ffmpeg"   "https://github.com/FFmpeg/FFmpeg.git"
+    #do_clone "ffmpeg"   "https://github.com/FFmpeg/FFmpeg.git"
+    do_clone "ffmpeg"   "https://github.com/LongChair/FFmpeg.git"
     #do_clone "fribidi"  "http://anongit.freedesktop.org/git/fribidi/fribidi.git"
     do_clone "libass"   "https://github.com/libass/libass.git"
-    do_clone "mpv"      "https://github.com/mpv-player/mpv.git"
+    #do_clone "mpv"      "https://github.com/mpv-player/mpv.git"
+    do_clone "mpv"      "https://github.com/LongChair/mpv.git"
 }
 
 do_gitmaster()
@@ -56,6 +58,14 @@ do_fixedref()
     (
         cd "$1"
         git checkout "$2"^0
+    )
+}
+
+do_rockchip()
+{
+    (
+        cd "$1"
+        git checkout rockchip
     )
 }
 
@@ -100,6 +110,9 @@ select_branch()
         master)
             echo do_gitmaster
             ;;
+        rockchip)
+            echo do_rockchip
+            ;;
         *)
             # "release" is the defined value; but default anything else to it
             echo do_releasetag
@@ -124,6 +137,10 @@ case "$1" in
         checkout_ffmpeg=do_releasetag
         checkout_mpv=do_releasetag
         ;;
+    --rockchip)
+	checkout_ffmpeg=do_rockchip
+	checkout_mpv=do_rockchip
+	;;
     '')
         ;;
     *)
