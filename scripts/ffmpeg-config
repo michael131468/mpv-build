@@ -28,6 +28,14 @@ then
     fi
 fi
 
+if ! ( echo "$OPTIONS" | grep -q -e --enable-rkmpp ) ;
+then
+    if pkg-config rockchip_mpp ; then
+        OPTIONS="$OPTIONS --enable-rkmpp"
+	echo "Auto-enabling Rockchip MPP hardware acceleration."
+    fi
+fi
+
 case "$PKG_CONFIG_PATH" in
   '')
     export PKG_CONFIG_PATH="$BUILD/build_libs/lib/pkgconfig"
